@@ -1,72 +1,93 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
-const portalPoints = [
-  { id: "p1", x: "20%", y: "30%", label: "Portal 1" },
-  { id: "p2", x: "55%", y: "40%", label: "Portal 2" },
-  { id: "p3", x: "70%", y: "68%", label: "Portal 3" },
+const portals = [
+  {
+    id: "irium",
+    label: "iRium World",
+    top: "13%",
+    left: "4.5%",
+    width: "31%",
+    height: "34%",
+    href: "/irium-world",
+  },
+  {
+    id: "idol",
+    label: "iDol World",
+    top: "12%",
+    left: "69.5%",
+    width: "28%",
+    height: "37%",
+    href: "/idol-world",
+  },
+  {
+    id: "novel",
+    label: "Novel World",
+    top: "56%",
+    left: "8%",
+    width: "30%",
+    height: "28%",
+    href: "/novel-world",
+  },
+  {
+    id: "core",
+    label: "AniMate Core",
+    top: "33%",
+    left: "36%",
+    width: "27%",
+    height: "50%",
+    href: "/animate-core",
+  },
+  {
+    id: "cafe",
+    label: "AniMate Cafe",
+    top: "56%",
+    left: "57%",
+    width: "34%",
+    height: "28%",
+    href: "/animate-cafe",
+  },
 ];
 
 export default function Home() {
-  const handlePortalClick = (label) => {
-    alert(`${label} ถูกกด!`);
+  const router = useRouter();
+
+  const handleClick = (portal) => {
+    router.push(portal.href);
+
+    // ถ้ายังไม่อยากให้ไปหน้าอื่นจริง ให้ใช้บรรทัดนี้แทน:
+    // alert(`Entering ${portal.label}`);
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/AniMateMainPage.png')" }}
-      />
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+    <main className="min-h-screen bg-black flex items-center justify-center">
+      <div className="relative w-full max-w-[1400px] aspect-[16/9]">
+        <img
+          src="/AniMateMainPage.png"
+          alt="AniMate Universe Portal Room"
+          className="w-full h-full object-contain select-none pointer-events-none"
+          draggable="false"
+        />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center text-white">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl font-black md:text-6xl"
-        >
-          AniMate Universe
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="mt-6 max-w-2xl text-sm md:text-lg text-slate-200"
-        >
-          เดินทางข้ามมิติในโลกอะนิเมะด้วยพอร์ทัลล่องหน เปิดปฏิบัติการสร้างคอนเทนต์ของคุณได้ทันที.
-        </motion.p>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {portalPoints.map((portal) => (
-            <motion.button
-              key={portal.id}
-              onClick={() => handlePortalClick(portal.label)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="rounded-full border border-emerald-300/60 bg-emerald-500/20 px-4 py-2 text-xs text-emerald-100 transition-opacity duration-300 hover:bg-emerald-400/30"
-            >
-              {portal.label}
-            </motion.button>
-          ))}
-        </div>
-
-        <div className="pointer-events-none absolute inset-0">
-          {portalPoints.map((portal) => (
-            <motion.div
-              key={portal.id}
-              className="portal absolute"
-              initial={{ opacity: 0.1, scale: 0.9 }}
-              animate={{ opacity: 0.28, scale: 1 }}
-              transition={{ duration: 1.2, repeat: Infinity, repeatType: "mirror" }}
-              style={{ left: portal.x, top: portal.y, transform: "translate(-50%, -50%)" }}
-            >
-              <div id="portal-overlay" title={portal.label} />
-            </motion.div>
-          ))}
-        </div>
+        {portals.map((portal) => (
+          <button
+            key={portal.id}
+            type="button"
+            aria-label={portal.label}
+            title={portal.label}
+            onClick={() => handleClick(portal)}
+            className="absolute rounded-[999px] border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyan-300/70 focus:outline-none focus:ring-2 focus:ring-cyan-300/80 transition-all duration-200"
+            style={{
+              top: portal.top,
+              left: portal.left,
+              width: portal.width,
+              height: portal.height,
+            }}
+          >
+            <span className="sr-only">{portal.label}</span>
+          </button>
+        ))}
       </div>
     </main>
   );
