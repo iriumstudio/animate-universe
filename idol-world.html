@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniMate Universe - IDOL WORLD</title>
+    <style>
+        :root {
+            --bg-color: #060912;
+            --header-bg: rgba(6, 9, 18, 0.95);
+            --neon-gold: #f1c40f;
+            --neon-pink: #ff00cc;
+            --neon-blue: #00d2ff;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body, html { margin: 0; padding: 0; background: var(--bg-color); color: white; font-family: 'Segoe UI', sans-serif; height: 100vh; overflow: hidden; }
+
+        header {
+            background: var(--header-bg); height: 60px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 30px; border-bottom: 1px solid var(--border-color); position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
+        .logo { color: var(--neon-blue); font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+
+        .main-container { display: flex; height: calc(100vh - 60px); margin-top: 60px; position: relative; }
+
+        /* เส้นแบ่งกลาง */
+        .main-divider {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--neon-pink), var(--neon-blue));
+            transform: translateX(-50%); box-shadow: 0 0 15px var(--neon-pink);
+            z-index: 5;
+        }
+
+        .section-header { margin-bottom: 20px; }
+        .title-main { font-size: 1.2rem; text-transform: uppercase; color: var(--neon-pink); margin: 0; }
+        .sub-title { color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; }
+
+        /* --- ฝั่งซ้าย: CORE MEMBERS (2x2) --- */
+        .left-panel { width: 50%; padding: 30px; box-sizing: border-box; }
+        .core-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; height: calc(100% - 100px); }
+        
+        .core-card {
+            background: rgba(255, 255, 255, 0.03); border: 2px solid var(--neon-gold); border-radius: 12px;
+            padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            transition: 0.3s; cursor: pointer; overflow: hidden;
+        }
+        .core-card:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(241, 196, 15, 0.3); }
+        .idol-pic-large { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
+        .group-name { font-size: 0.9rem; font-weight: bold; color: var(--neon-gold); }
+
+        /* --- ฝั่งขวา: iDol League (2x3 แนวนอน 16:9) --- */
+        .right-panel { width: 50%; padding: 30px; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
+        .league-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; flex-grow: 1; }
+
+        .league-card {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 8px;
+            padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: 0.3s; cursor: pointer;
+        }
+        .league-card:hover { border-color: var(--neon-pink); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 0, 204, 0.1); }
+        
+        .idol-pic-small { 
+            width: 100%; aspect-ratio: 16 / 9; object-fit: cover; 
+            border-radius: 4px; background: #1a1a2e; margin-bottom: 10px; 
+        }
+        .trainee-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
+
+        /* --- ส่วนล่างของการ์ด (ชื่อ + ปุ่ม Watch) --- */
+        .card-footer {
+            display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 5px; box-sizing: border-box;
+        }
+        .watch-btn {
+            border: none; border-radius: 4px; color: black; font-size: 0.7rem; font-weight: bold; padding: 4px 8px; cursor: pointer; transition: 0.3s;
+        }
+        .watch-btn-gold { background: var(--neon-gold); box-shadow: 0 0 5px var(--neon-gold); }
+        .watch-btn-gold:hover { transform: scale(1.1); box-shadow: 0 0 10px var(--neon-gold); }
+        
+        .watch-btn-pink { background: var(--neon-pink); box-shadow: 0 0 5px var(--neon-pink); }
+        .watch-btn-pink:hover { transform: scale(1.1); box-shadow: 0 0 10px var(--neon-pink); }
+
+        /* Pagination */
+        .pagination { display: flex; gap: 8px; margin-top: 20px; }
+        .page-btn {
+            width: 35px; height: 35px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color);
+            border-radius: 50%; color: #fff; cursor: pointer; transition: 0.3s; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .page-btn.active { background: var(--neon-pink); border-color: var(--neon-pink); color: #000; box-shadow: 0 0 10px var(--neon-pink); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; overflow-y: auto; }
+            .left-panel, .right-panel { width: 100%; height: auto; }
+            .main-divider { display: none; }
+            .core-grid, .league-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">ANI-MATE UNIVERSE</div>
+    <div style="font-size: 0.8rem; color: var(--neon-blue);">IDOL WORLD PORTAL</div>
+</header>
+
+<div class="main-container">
+    <div class="main-divider"></div>
+
+    <div class="left-panel">
+        <div class="section-header">
+            <h1 class="title-main">CORE MEMBERS</h1>
+            <p class="sub-title">วงไอดอลที่ผ่านการเดบิวต์แล้ว</p>
+        </div>
+        <div class="core-grid">
+            
+            <div class="core-card" onclick="window.open('https://facebook.com/ANIX', '_blank')">
+                <img src="anix.jpg" class="idol-pic-large" onerror="this.src='https://via.placeholder.com/400x500/222/gold?text=ANIX'">
+                <div class="card-footer">
+                    <span class="group-name">ANIX</span>
+                    <button class="watch-btn watch-btn-gold" onclick="event.stopPropagation(); window.open('https://www.youtube.com/playlist?list=PLpDZkAX_z_42Id4PQvrvfijhaRJ5vAdOq', '_blank')">▶ WATCH</button>
+                </div>
+            </div>
+
+            <div class="core-card" onclick="window.open('https://facebook.com/Hanko', '_blank')">
+                <img src="hanko.jpg" class="idol-pic-large" onerror="this.src='https://via.placeholder.com/400x500/222/gold?text=Hankō'">
+                <div class="card-footer">
+                    <span class="group-name">Hankō</span>
+                    <button class="watch-btn watch-btn-gold" onclick="event.stopPropagation(); window.open('https://youtube.com/Hanko_MV', '_blank')">▶ WATCH</button>
+                </div>
+            </div>
+
+            <div class="core-card" onclick="window.open('https://facebook.com/Oni3', '_blank')">
+                <img src="oni3.jpg" class="idol-pic-large" onerror="this.src='https://via.placeholder.com/400x500/222/gold?text=Oni3'">
+                <div class="card-footer">
+                    <span class="group-name">Oni3 : Crimson Kagura</span>
+                    <button class="watch-btn watch-btn-gold" onclick="event.stopPropagation(); window.open('https://youtube.com/Oni3_MV', '_blank')">▶ WATCH</button>
+                </div>
+            </div>
+
+            <div class="core-card" onclick="window.open('https://facebook.com/Zister', '_blank')">
+                <img src="zister.jpg" class="idol-pic-large" onerror="this.src='https://via.placeholder.com/400x500/222/gold?text=Zister'">
+                <div class="card-footer">
+                    <span class="group-name">Zister</span>
+                    <button class="watch-btn watch-btn-gold" onclick="event.stopPropagation(); window.open('https://youtube.com/Zister_MV', '_blank')">▶ WATCH</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <div class="section-header">
+            <h1 class="title-main">IDOL LEAGUE</h1>
+            <p class="sub-title">Project 24 Trainees - Season 1</p>
+        </div>
+        <div class="league-grid" id="league-container"></div>
+        <div class="pagination" id="pagination-container"></div>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // ฐานข้อมูลเด็กฝึก 24 คน (แก้ไขรูป, ชื่อ, ลิงก์ FB และ ลิงก์ YT ตรงนี้ได้เลยค่ะ)
+    // ==========================================
+    const trainees = [
+        { id: 1, name: "【AMTI#001】อาซาฮิ เรนะ", img: "amti1.png", fbLink: "https://www.facebook.com/media/set/?set=a.122107812645254927", ytLink: "https://youtube.com/shorts/eM3RXETUF0c" }, 
+        { id: 2, name: "【AMTI#002】อามาเทรุ ฮิบานะ", img: "amti2.png", fbLink: "https://www.facebook.com/media/set/?set=a.122107829925254927", ytLink: "https://youtube.com/shorts/LDbZD9ABYDk" },
+        { id: 3, name: "【AMTI#003】 คางามิ ฟีร่า", img: "amti3.png", fbLink: "https://www.facebook.com/media/set/?set=a.122107823991254927", ytLink: "https://youtube.com/shorts/Bzp_pV6Kqp4" }, 
+        { id: 4, name: "【AMTI#004】 โฮชิคาวะ เนมิ", img: "amti4.png", fbLink: "https://facebook.com/media/set/?set=a.122107830735254927", ytLink: "https://youtube.com/shorts/_XySD9SIAHg" },
+        { id: 5, name: "【AMTI#005】 นานาเสะ โมโมะ", img: "amti5.png", fbLink: "https://facebook.com/media/set/?set=a.122107831557254927", ytLink: "https://youtube.com/shorts/CCQJWwmiNnw" }, 
+        { id: 6, name: "【AMTI#006】ยูคิฮาระ คริสต้า", img: "amti6.png", fbLink: "https://facebook.com/media/set/?set=a.122107832475254927", ytLink: "https://youtube.com/shorts/pO_NcsOIdi4" },
+        { id: 7, name: "【AMTI#007】 อามะซากิ มิคิริ", img: "amti7.png", fbLink: "https://facebook.com/media/set/?set=a.122107836477254927", ytLink: "https://youtube.com/shorts/Bk0lFmr50x4" }, 
+        { id: 8, name: "【AMTI#008】อาเมโนะ เซราฟีน", img: "amti8.png", fbLink: "https://facebook.com/media/set/?set=a.122107838643254927", ytLink: "https://youtube.com/shorts/LRHaiHzWSHg" },
+        { id: 9, name: "【AMTI#009] โฮเซ็นกะ คาเอเดะ", img: "amti9.png", fbLink: "https://facebook.com/media/set/?set=a.122107840929254927", ytLink: "https://youtube.com/shorts/G2385_WcV-o" }, 
+        { id: 10, name: "[AMTI#010] ชิรายูกิ เรมิลา", img: "amti10.png", fbLink: "https://facebook.com/media/set/?set=a.122107849449254927", ytLink: "https://youtube.com/shorts/gKgEgh-SqGw" },
+        { id: 11, name: "【AMTI#011】 ชิรานามิ มายูริ", img: "amti11.png", fbLink: "https://facebook.com/media/set/?set=a.122107849953254927", ytLink: "https://youtube.com/shorts/_-kAzdobTkc" }, 
+        { id: 12, name: "【AMTI#012】 ไอซาวะ โนเอล", img: "amti12.png", fbLink: "https://facebook.com/media/set/?set=a.122107857303254927", ytLink: "https://youtube.com/shorts/YXDKoASNlCA" },
+        { id: 13, name: "【AMTI#013】 ฮินาตะ อาการิ", img: "amti13.png", fbLink: "https://facebook.com/media/set/?set=a.122107857849254927", ytLink: "https://youtube.com/shorts/Z3Ls0EaRrWA" }, 
+        { id: 14, name: "【AMTI#014】เอลาเรีย ริริกะ", img: "amti14.png", fbLink: "https://facebook.com/media/set/?set=a.122107858677254927", ytLink: "https://youtube.com/shorts/_swIt9It8Wo" },
+        { id: 15, name: "【AMTI#015】 ชิรามิเนะ ไอริ", img: "amti15.png", fbLink: "https://facebook.com/media/set/?set=a.122107859187254927", ytLink: "https://youtube.com/shorts/P_GaHP6SvNA" }, 
+        { id: 16, name: "【AMTI#016】ดราโคริส ลิเรีย", img: "amti16.png", fbLink: "https://facebook.com/media/set/?set=a.122107860363254927", ytLink: "https://youtube.com/shorts/k3odeI88Bes" },
+        { id: 17, name: "【AMTI#017】ซาโตะ ชิโอริ", img: "amti17.png", fbLink: "https://facebook.com/media/set/?set=a.122107861071254927", ytLink: "https://youtube.com/shorts/qAGPiQ1xvnM" }, 
+        { id: 18, name: "【AMTI#018】อลิสา ดาราวลิน ", img: "amti18.png", fbLink: "https://facebook.com/media/set/?set=a.122107864527254927", ytLink:"https://youtube.com/shorts/n3i3K5dvnbk" },
+        { id: 19, name: "【AMTI#019】สเตลล่า นัวเรต์", img: "amti19.png", fbLink: "https://facebook.com/media/set/?set=a.122107903797254927", ytLink: "https://youtube.com/shorts/htQkSwSuzMo"} , 
+        { id: 20, name: "【AMTI#020】อิกนิส เฟลิน่า", img: "amti20.png", fbLink: "https://facebook.com/media/set/?set=a.122107901733254927", ytLink: "https://youtube.com/shorts/btVSAbsSP_M" }
+    ];
+
+    const itemsPerPage = 4;
+    let currentPage = 1;
+
+    function displayTrainees(page) {
+        const container = document.getElementById('league-container');
+        container.innerHTML = "";
+        const start = (page - 1) * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, trainees.length); 
+        const currentData = trainees.slice(start, end);
+
+        currentData.forEach(t => {
+            // โครงสร้างการ์ดเด็กฝึก (ฝั่งขวา)
+            container.innerHTML += `
+                <div class="league-card" onclick="window.open('${t.fbLink}', '_blank')">
+                    <img src="${t.img}" class="idol-pic-small" onerror="this.src='https://via.placeholder.com/320x180/222/eee?text=16:9+IMAGE'">
+                    <div class="card-footer">
+                        <span class="trainee-name">${t.name}</span>
+                        <button class="watch-btn watch-btn-pink" onclick="event.stopPropagation(); window.open('${t.ytLink}', '_blank')">
+                            ▶ WATCH
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function setupPagination() {
+        const container = document.getElementById('pagination-container');
+        container.innerHTML = "";
+        const pageCount = Math.ceil(trainees.length / itemsPerPage);
+
+        for (let i = 1; i <= pageCount; i++) {
+            const btn = document.createElement('button');
+            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+            btn.innerText = i;
+            btn.onclick = () => {
+                currentPage = i;
+                displayTrainees(currentPage);
+                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            };
+            container.appendChild(btn);
+        }
+    }
+
+    displayTrainees(1);
+    setupPagination();
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AniMate Universe</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+        
+        .container {
+            position: relative;
+            width: 100vw; height: 100vh;
+            background: url('AniMateMainPage.png') no-repeat center center;
+            background-size: contain;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* รัศมีประตูมิติ (Aura) */
+        .portal {
+            position: absolute;
+            cursor: pointer;
+            border-radius: 50%; /* ทำให้เป็นวงกลม */
+            border: 2px dashed rgba(255, 255, 255, 0.2); /* เส้นประจางๆ ให้รู้ว่ากดได้ */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-weight: bold; text-align: center;
+            opacity: 0.3; /* ปกติจะจางๆ */
+            animation: pulse 3s infinite; /* เอฟเฟกต์เต้นตุบๆ */
+        }
+
+        /* เอฟเฟกต์ตอนเมาส์ชี้ (Hover) */
+        .portal:hover {
+            opacity: 1;
+            transform: scale(1.1); /* ขยายใหญ่นิดนึง */
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 10px #fff;
+        }
+
+        /* อนิเมชั่นเต้นตุบๆ */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); }
+            100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.2); }
+        }
+
+        /* --- ปรับพิกัดใหม่ให้ครอบเกทพอดี (คุณท่านลองเลื่อนเลขพวกนี้ได้นะคะ) --- */
+        
+        /* เกทซ้าย (iRium) */
+        #irium { 
+            top: 17%; left: 8.5%; 
+            width: 25%; height: 42%; 
+        }
+
+        /* เกทขวา (iDol) */
+        #idol { 
+            top: 13%; left: 70.5%; 
+            width: 29%; height: 42%; 
+        }
+
+        /* เกทล่างซ้าย (Novel World) */
+        #novel {
+            top: 57%; left: 9.5%;
+            width: 30%; height: 28%;
+        }
+
+        /* เกทล่างขวา (AniMate Cafe) */
+        #cafe {
+            top: 58%; left: 58%;
+            width: 30%; height: 28%;
+        }
+
+        /* เกทกลาง (AniMate Core) */
+        #animateCore {
+            top: 48%; left: 36%;
+            width: 28%; height: 25%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="irium" class="portal" onclick="alert('Entering iRium World...')">
+            <span>OPEN PORTAL<br>MUSIC WORLD</span>
+        </div>
+
+        <div id="idol" class="portal" onclick="alert('Entering iDol World...')">
+            <span>OPEN PORTAL<br>IDOL WORLD</span>
+        </div>
+
+        <div id="novel" class="portal" onclick="alert('Entering Novel World...')">
+            <span>OPEN PORTAL<br>NOVEL WORLD</span>
+        </div>
+
+        <div id="animateCore" class="portal" onclick="alert('Entering AniMate Core...')">
+            <span>ENTER PORTAL<br>ANIMATE CORE</span>
+        </div>
+
+        <div id="cafe" class="portal" onclick="alert('Entering AniMate Cafe...')">
+            <span>OPEN PORTAL<br>ANIMATE CAFE</span>
+        </div>
+    </div>
+</body>
+</html>
