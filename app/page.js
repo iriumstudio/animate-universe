@@ -55,40 +55,35 @@ export default function Home() {
 
   const handleClick = (portal) => {
     router.push(portal.href);
-
-    // ถ้ายังไม่อยากให้ไปหน้าอื่นจริง ให้ใช้บรรทัดนี้แทน:
-    // alert(`Entering ${portal.label}`);
   };
 
   return (
-    <main className="min-h-screen bg-black flex items-center justify-center">
-      <div className="relative w-full max-w-[1400px] aspect-[16/9]">
-        <img
-          src="/AniMateMainPage.png"
-          alt="AniMate Universe Portal Room"
-          className="w-full h-full object-contain select-none pointer-events-none"
-          draggable="false"
-        />
+    <main className="relative w-screen h-screen overflow-hidden bg-black">
+      <img
+        src="/AniMateMainPage.png"
+        alt="AniMate Universe Portal Room"
+        className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+        draggable="false"
+      />
 
-        {portals.map((portal) => (
-          <button
-            key={portal.id}
-            type="button"
-            aria-label={portal.label}
-            title={portal.label}
-            onClick={() => handleClick(portal)}
-            className="absolute rounded-[999px] border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyan-300/70 focus:outline-none focus:ring-2 focus:ring-cyan-300/80 transition-all duration-200"
-            style={{
-              top: portal.top,
-              left: portal.left,
-              width: portal.width,
-              height: portal.height,
-            }}
-          >
-            <span className="sr-only">{portal.label}</span>
-          </button>
-        ))}
-      </div>
+      {portals.map((portal) => (
+        <button
+          key={portal.id}
+          type="button"
+          aria-label={portal.label}
+          title={portal.label}
+          onClick={() => handleClick(portal)}
+          className="absolute rounded-[999px] border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyan-300/70 focus:outline-none focus:ring-2 focus:ring-cyan-300/80 transition-all duration-200"
+          style={{
+            top: portal.top,
+            left: portal.left,
+            width: portal.width,
+            height: portal.height,
+          }}
+        >
+          <span className="sr-only">{portal.label}</span>
+        </button>
+      ))}
     </main>
   );
 }
