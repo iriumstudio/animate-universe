@@ -7,6 +7,11 @@ const VOTE_GUIDE_PATH = "/idol-world/vote-guide";
 const LINE_OA_URL = "https://lin.ee/OqESh9o";
 const FACEBOOK_MAIN_URL = "https://facebook.com/AnimateUniverseTH";
 
+const PORTAL_PATH = "/";
+const IRIUM_WORLD_PATH = "/irium-world";
+const NOVEL_WORLD_PATH = "/novel-world";
+const IDOL_WORLD_PATH = "/idol-world";
+
 const trainees = [
   {
     id: 1,
@@ -165,7 +170,6 @@ const coreMembers = [
     img: "/zister.jpg",
     fbLink: "https://facebook.com/media/set/?set=a.122109069213254927",
     ytLink: "https://youtu.be/uRK_kowvZpU",
-
   },
   {
     name: "ANIX",
@@ -237,6 +241,13 @@ const leagueFeaturedCards = [
 
 const itemsPerPage = 20;
 
+const topNavItems = [
+  { label: "Portal", href: PORTAL_PATH },
+  { label: "iRium World", href: IRIUM_WORLD_PATH },
+  { label: "Novel World", href: NOVEL_WORLD_PATH },
+  { label: "iDol World", href: IDOL_WORLD_PATH, active: true },
+];
+
 export default function IdolWorldPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -257,20 +268,42 @@ export default function IdolWorldPage() {
 
   return (
     <main className="min-h-screen bg-[#060912] text-white lg:h-screen lg:overflow-hidden">
-      <header className="fixed top-0 z-50 flex h-[60px] w-full items-center justify-between border-b border-white/10 bg-[rgba(6,9,18,0.95)] px-8 backdrop-blur-sm">
-        <div className="text-2xl font-black tracking-wide text-[#00d2ff]">
-          ANI-MATE UNIVERSE
+      <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[rgba(6,9,18,0.95)] backdrop-blur-sm">
+        <div className="flex min-h-[60px] w-full items-center justify-between px-5 md:px-8">
+          <Link
+            href={PORTAL_PATH}
+            className="text-xl font-black tracking-wide text-[#00d2ff] md:text-2xl"
+          >
+            ANI-MATE UNIVERSE
+          </Link>
+
+          <div className="hidden text-sm font-semibold tracking-[0.18em] text-[#00d2ff] xl:block">
+            IDOL WORLD
+          </div>
         </div>
-        <div className="text-sm font-semibold tracking-[0.18em] text-[#00d2ff]">
-          IDOL WORLD
+
+        <div className="flex flex-wrap items-center gap-2 border-t border-white/5 px-5 py-3 md:px-8">
+          {topNavItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`rounded-full border px-4 py-2 text-xs font-black uppercase tracking-[0.2em] transition md:text-[11px] ${
+                item.active
+                  ? "border-[#00d2ff]/45 bg-[#00d2ff]/12 text-[#8aeaff] shadow-[0_0_14px_rgba(0,210,255,0.14)]"
+                  : "border-white/10 bg-white/5 text-white/70 hover:border-[#00d2ff]/35 hover:bg-[#00d2ff]/10 hover:text-[#b8f5ff]"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </header>
 
-      <div className="relative mt-[60px] flex min-h-[calc(100vh-60px)] flex-col lg:h-[calc(100vh-60px)] lg:flex-row lg:items-start">
+      <div className="relative mt-[112px] flex min-h-[calc(100vh-112px)] flex-col lg:h-[calc(100vh-112px)] lg:flex-row lg:items-start">
         <div className="absolute bottom-0 left-1/2 top-0 hidden w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#ffcc00] via-[#ff00cc] to-[#00d2ff] lg:block" />
 
         {/* LEFT PANEL */}
-        <section className="w-full self-start p-8 lg:h-[calc(100vh-60px)] lg:w-1/2 lg:overflow-y-auto">
+        <section className="w-full self-start p-8 lg:h-[calc(100vh-112px)] lg:w-1/2 lg:overflow-y-auto">
           <div className="mb-7 rounded-3xl border border-[#f1c40f]/20 bg-[radial-gradient(circle_at_top,rgba(241,196,15,0.10),rgba(241,196,15,0.03)_35%,rgba(255,255,255,0.015))] p-6 shadow-[0_0_24px_rgba(241,196,15,0.06)]">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#f1c40f]/65">
               Debuted Units
@@ -286,7 +319,7 @@ export default function IdolWorldPage() {
           <div className="mb-6 grid grid-cols-1 gap-5 xl:grid-cols-2">
             {featuredMembers.map((item) => (
               <div
-                key={item.name}
+                key={`${item.name}-${item.img}`}
                 onClick={() => openNewTab(item.fbLink)}
                 className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[28px] border border-[#f1c40f]/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(241,196,15,0.30)]"
               >
@@ -333,9 +366,9 @@ export default function IdolWorldPage() {
           </div>
 
           <div className="grid grid-cols-1 items-start gap-5 pb-8 sm:grid-cols-2">
-            {regularMembers.map((item) => (
+            {regularMembers.map((item, index) => (
               <div
-                key={item.name}
+                key={`${item.name}-${index}`}
                 onClick={() => openNewTab(item.fbLink)}
                 className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#f1c40f]/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-3 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(241,196,15,0.25)]"
               >
@@ -372,7 +405,7 @@ export default function IdolWorldPage() {
         </section>
 
         {/* RIGHT PANEL */}
-        <section className="flex w-full self-start flex-col p-8 lg:h-[calc(100vh-60px)] lg:w-1/2 lg:overflow-y-auto">
+        <section className="flex w-full self-start flex-col p-8 lg:h-[calc(100vh-112px)] lg:w-1/2 lg:overflow-y-auto">
           <div className="mb-6 w-full rounded-3xl border border-[#ff00cc]/25 bg-[radial-gradient(circle_at_top,rgba(255,0,204,0.16),rgba(255,0,204,0.03)_35%,rgba(255,255,255,0.02))] p-6 shadow-[0_0_30px_rgba(255,0,204,0.08)]">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff74de]/70">
               Competition Stage
@@ -420,7 +453,6 @@ export default function IdolWorldPage() {
             </div>
           </div>
 
-          {/* BIG FEATURED LEAGUE CARDS */}
           <div className="mb-6 grid grid-cols-1 gap-5 xl:grid-cols-2">
             {leagueFeaturedCards.map((item) => (
               <div
