@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const VOTE_GUIDE_PATH = "/idol-world/vote-guide";
-const OPENING_MV_URL = "https://youtu.be/SJbFWSCn4E0";
 const LINE_OA_URL = "https://lin.ee/OqESh9o";
+const FACEBOOK_MAIN_URL = "https://facebook.com/AnimateUniverseTH";
 
 const trainees = [
   {
@@ -152,36 +152,90 @@ const trainees = [
 
 const coreMembers = [
   {
+    name: "ไอรีณ",
+    subtitle: "ไอดอลยักษ์สาว ผู้จะมาปัดเป่าสิ่งชั่วร้าย",
+    img: "/ireen2.png",
+    fbLink: "https://facebook.com/media/set/?set=a.122109068979254927",
+    ytLink: "https://youtu.be/mqnXJzoDTHE",
+    featured: true,
+  },
+  {
+    name: "Zister",
+    subtitle: "LITTLE SISTER IDOL UNIT",
+    img: "/zister.jpg",
+    fbLink: "https://facebook.com/media/set/?set=a.122109069213254927",
+    ytLink: "https://youtu.be/uRK_kowvZpU",
+
+  },
+  {
     name: "ANIX",
     subtitle: "KEMONOMIMI IDOL BAND",
     img: "/anix.jpg",
-    fbLink: "https://facebook.com/ANIX",
+    fbLink: "https://facebook.com/media/set/?set=a.122107353303254927",
     ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_42Id4PQvrvfijhaRJ5vAdOq",
   },
   {
     name: "Hankō",
     subtitle: "NEO-MATSURI POP DUO",
     img: "/hanko.jpg",
-    fbLink: "https://facebook.com/Hanko",
+    fbLink: "https://facebook.com/media/set/?set=a.122109070575254927",
     ytLink: "https://youtu.be/3jljRzE7cLo",
   },
   {
     name: "Oni3 : Crimson Kagura",
     subtitle: "FESTIVAL BATTLE UNIT",
     img: "/oni3.jpg",
-    fbLink: "https://facebook.com/Oni3",
+    fbLink: "https://facebook.com/media/set/?set=a.122109070029254927",
     ytLink: "https://youtu.be/kA0Gw8qefPU",
   },
   {
-    name: "Zister",
-    subtitle: "LITTLE SISTER IDOL UNIT",
-    img: "/zister.jpg",
-    fbLink: "https://facebook.com/Zister",
-    ytLink: "https://youtu.be/uRK_kowvZpU",
+    name: "Coming Soon",
+    subtitle: "NEW FEATURED IDOL UNIT",
+    img: "/lunaria.jpg",
+    fbLink: "https://facebook.com/Lunaria",
+    ytLink: "https://youtube.com",
+    featured: true,
+  },
+  {
+    name: "Coming Soon",
+    subtitle: "NEXT GENERATION PERFORMANCE UNIT",
+    img: "/eclipse.jpg",
+    fbLink: "https://facebook.com/Eclipse",
+    ytLink: "https://youtube.com",
+  },
+  {
+    name: "Coming Soon",
+    subtitle: "DREAM POP IDOL PROJECT",
+    img: "/celestia.jpg",
+    fbLink: "https://facebook.com/Celestia",
+    ytLink: "https://youtube.com",
   },
 ];
 
-const itemsPerPage = 4;
+const leagueFeaturedCards = [
+  {
+    id: "mv-main",
+    title: "MV เพลงเปิด Season 1",
+    subtitle: "OPENING MV",
+    img: "/amti0.jpeg",
+    primaryLink: "https://youtu.be/SJbFWSCn4E0",
+    secondaryLink: "https://facebook.com/AnimateUniverseTH",
+    badge: "Featured",
+    actionLabel: "▶ WATCH",
+  },
+  {
+    id: "news-main",
+    title: "ข่าวสาร & ประกาศสำคัญ",
+    subtitle: "ANNOUNCEMENT / UPDATE",
+    img: "/league-news.jpg",
+    primaryLink: "https://facebook.com/AnimateUniverseTH",
+    secondaryLink: "https://lin.ee/OqESh9o",
+    badge: "Update",
+    actionLabel: "📢 VIEW",
+  },
+];
+
+const itemsPerPage = 20;
 
 export default function IdolWorldPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -193,13 +247,16 @@ export default function IdolWorldPage() {
     return trainees.slice(start, start + itemsPerPage);
   }, [currentPage]);
 
+  const featuredMembers = coreMembers.slice(0, 2);
+  const regularMembers = coreMembers.slice(2);
+
   const openNewTab = (url) => {
     if (!url || url === "#") return;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#060912] text-white">
+    <main className="min-h-screen bg-[#060912] text-white lg:h-screen lg:overflow-hidden">
       <header className="fixed top-0 z-50 flex h-[60px] w-full items-center justify-between border-b border-white/10 bg-[rgba(6,9,18,0.95)] px-8 backdrop-blur-sm">
         <div className="text-2xl font-black tracking-wide text-[#00d2ff]">
           ANI-MATE UNIVERSE
@@ -209,11 +266,11 @@ export default function IdolWorldPage() {
         </div>
       </header>
 
-      <div className="relative mt-[60px] flex min-h-[calc(100vh-60px)] flex-col lg:flex-row">
+      <div className="relative mt-[60px] flex min-h-[calc(100vh-60px)] flex-col lg:h-[calc(100vh-60px)] lg:flex-row lg:items-start">
         <div className="absolute bottom-0 left-1/2 top-0 hidden w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#ffcc00] via-[#ff00cc] to-[#00d2ff] lg:block" />
 
         {/* LEFT PANEL */}
-        <section className="w-full p-8 lg:w-1/2">
+        <section className="w-full self-start p-8 lg:h-[calc(100vh-60px)] lg:w-1/2 lg:overflow-y-auto">
           <div className="mb-7 rounded-3xl border border-[#f1c40f]/20 bg-[radial-gradient(circle_at_top,rgba(241,196,15,0.10),rgba(241,196,15,0.03)_35%,rgba(255,255,255,0.015))] p-6 shadow-[0_0_24px_rgba(241,196,15,0.06)]">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#f1c40f]/65">
               Debuted Units
@@ -226,8 +283,57 @@ export default function IdolWorldPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2">
-            {coreMembers.map((item) => (
+          <div className="mb-6 grid grid-cols-1 gap-5 xl:grid-cols-2">
+            {featuredMembers.map((item) => (
+              <div
+                key={item.name}
+                onClick={() => openNewTab(item.fbLink)}
+                className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[28px] border border-[#f1c40f]/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(241,196,15,0.30)]"
+              >
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(241,196,15,0.18),transparent_55%)] opacity-80" />
+
+                <div className="relative z-10 mb-3 flex items-center justify-between gap-3">
+                  <span className="rounded-full border border-[#f7d55b]/35 bg-[#f1c40f]/15 px-3 py-1 text-[10px] font-black uppercase tracking-[0.25em] text-[#f7d55b]">
+                    ✨ Featured
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+                    New Core Unit
+                  </span>
+                </div>
+
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="relative z-10 mb-4 aspect-[16/9] w-full rounded-2xl object-cover object-center"
+                />
+
+                <div className="relative z-10 flex items-end justify-between gap-3 px-1">
+                  <div className="min-w-0">
+                    <h3 className="truncate text-xl font-black tracking-[0.03em] text-[#f7d55b] md:text-2xl">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 truncate text-[11px] uppercase tracking-[0.22em] text-white/45">
+                      {item.subtitle}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openNewTab(item.ytLink);
+                    }}
+                    className="shrink-0 rounded-xl border border-[#f1c40f]/40 bg-[#f1c40f] px-4 py-2.5 text-[11px] font-black tracking-wide text-black shadow-[0_0_10px_rgba(241,196,15,0.35)] transition hover:scale-105 hover:shadow-[0_0_16px_rgba(241,196,15,0.55)]"
+                  >
+                    ▶ WATCH
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 items-start gap-5 pb-8 sm:grid-cols-2">
+            {regularMembers.map((item) => (
               <div
                 key={item.name}
                 onClick={() => openNewTab(item.fbLink)}
@@ -266,7 +372,7 @@ export default function IdolWorldPage() {
         </section>
 
         {/* RIGHT PANEL */}
-        <section className="flex w-full flex-col items-center p-8 lg:w-1/2">
+        <section className="flex w-full self-start flex-col p-8 lg:h-[calc(100vh-60px)] lg:w-1/2 lg:overflow-y-auto">
           <div className="mb-6 w-full rounded-3xl border border-[#ff00cc]/25 bg-[radial-gradient(circle_at_top,rgba(255,0,204,0.16),rgba(255,0,204,0.03)_35%,rgba(255,255,255,0.02))] p-6 shadow-[0_0_30px_rgba(255,0,204,0.08)]">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff74de]/70">
               Competition Stage
@@ -283,7 +389,7 @@ export default function IdolWorldPage() {
 
             <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70 md:text-base">
               เวทีรวมผู้เข้าแข่งขัน 20 คน กด Add LINE เพื่อรับข่าวสารวันเปิดโหวต
-              และอัปเดตกิจกรรมสำคัญก่อนใคร
+              และติดตาม Facebook เพื่อรับอัปเดตกิจกรรมใหม่ก่อนใคร
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
@@ -295,12 +401,12 @@ export default function IdolWorldPage() {
               </Link>
 
               <a
-                href={OPENING_MV_URL}
+                href={FACEBOOK_MAIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl border border-cyan-300/35 bg-cyan-400/10 px-5 py-3 text-sm font-black tracking-wide text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-400/20 hover:shadow-[0_0_16px_rgba(34,211,238,0.22)]"
+                className="rounded-2xl border border-blue-300/35 bg-blue-400/10 px-5 py-3 text-sm font-black tracking-wide text-blue-100 transition hover:-translate-y-0.5 hover:bg-blue-400/20 hover:shadow-[0_0_16px_rgba(96,165,250,0.22)]"
               >
-                ▶ MV เพลงเปิด
+                👍 Facebook
               </a>
 
               <a
@@ -312,6 +418,56 @@ export default function IdolWorldPage() {
                 💬 Add LINE
               </a>
             </div>
+          </div>
+
+          {/* BIG FEATURED LEAGUE CARDS */}
+          <div className="mb-6 grid grid-cols-1 gap-5 xl:grid-cols-2">
+            {leagueFeaturedCards.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => openNewTab(item.primaryLink)}
+                className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[28px] border border-[#ff4fd8]/55 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,0,204,0.20)]"
+              >
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,0,204,0.15),transparent_58%)] opacity-80" />
+
+                <div className="relative z-10 mb-3 flex items-center justify-between gap-3">
+                  <span className="rounded-full border border-[#ff7ae5]/35 bg-[#ff00cc]/15 px-3 py-1 text-[10px] font-black uppercase tracking-[0.25em] text-[#ff9ceb]">
+                    ✨ {item.badge}
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+                    League Highlight
+                  </span>
+                </div>
+
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="relative z-10 mb-4 aspect-[16/9] w-full rounded-2xl object-cover object-center"
+                />
+
+                <div className="relative z-10 flex items-end justify-between gap-3 px-1">
+                  <div className="min-w-0">
+                    <h3 className="truncate text-lg font-black tracking-[0.03em] text-white md:text-xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 truncate text-[11px] uppercase tracking-[0.22em] text-white/45">
+                      {item.subtitle}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openNewTab(item.primaryLink);
+                    }}
+                    className="shrink-0 rounded-xl bg-[#ff00cc] px-4 py-2.5 text-[11px] font-black tracking-wide text-black shadow-[0_0_10px_rgba(255,0,204,0.35)] transition hover:scale-105 hover:shadow-[0_0_16px_rgba(255,0,204,0.55)]"
+                  >
+                    {item.actionLabel}
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="mb-5 w-full">
@@ -330,7 +486,7 @@ export default function IdolWorldPage() {
             </div>
           </div>
 
-          <div className="grid w-full flex-grow grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             {currentData.map((t) => (
               <div
                 key={t.id}
@@ -363,22 +519,24 @@ export default function IdolWorldPage() {
             ))}
           </div>
 
-          <div className="mt-6 flex gap-2">
-            {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                type="button"
-                onClick={() => setCurrentPage(page)}
-                className={`flex h-[40px] w-[40px] items-center justify-center rounded-full border text-sm font-black transition ${
-                  page === currentPage
-                    ? "border-[#ff00cc] bg-[#ff00cc] text-black shadow-[0_0_12px_#ff00cc]"
-                    : "border-white/10 bg-white/5 text-white hover:border-[#ff00cc]/40 hover:text-[#ffd0f5]"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-          </div>
+          {pageCount > 1 && (
+            <div className="mt-6 flex gap-2 pb-8">
+              {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => setCurrentPage(page)}
+                  className={`flex h-[40px] w-[40px] items-center justify-center rounded-full border text-sm font-black transition ${
+                    page === currentPage
+                      ? "border-[#ff00cc] bg-[#ff00cc] text-black shadow-[0_0_12px_#ff00cc]"
+                      : "border-white/10 bg-white/5 text-white hover:border-[#ff00cc]/40 hover:text-[#ffd0f5]"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </main>
