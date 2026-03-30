@@ -127,6 +127,115 @@ export default function NovelPage() {
             </a>
           </div>
         </section>
+        {/* CHARACTERS */}
+<section>
+  <div className="mb-6">
+    <h2 className="text-3xl font-black text-white md:text-4xl">
+      ตัวละครหลัก
+    </h2>
+    <p className="mt-3 text-sm text-white/60">
+      แนะนำตัวละครเบื้องต้นจากเรื่อง “{NOVEL_TITLE}”
+    </p>
+  </div>
+
+  <div className="space-y-6">
+
+    {[
+      {
+        id: 1,
+        name: "หลิงเยว่",
+        title: "น้องคนที่ 6 แห่ง 7 ปรมาจารย์",
+        img: "/novel-c1.png",
+        desc: "หญิงสาวผู้เป็นศูนย์กลางของเรื่องราว บทเพลงของเธอคือจุดเริ่มต้นของเรื่องราวทั้งหมด และเป็นกุญแจสำคัญที่เชื่อมโยงทุกคนเข้าด้วยกัน",
+      },
+      {
+        id: 2,
+        name: " ",
+        title: "น้องคนที่ 7",
+        img: "/novel-c2.png",
+        desc: "เด็กสาวอัจฉริยะในรอบ 100 ปี แต่กลับมีความลับบางอย่างที่ซ่อนอยู่ในอดีตของเธอ",
+      },
+      {
+        id: 3,
+        name: "",
+        title: "น้องคนที่ 5",
+        img: "/novel-c3.png",
+        desc: "ผู้ใช้จังหวะในการต่อสู้ เสียงกลองของเธอสามารถเปลี่ยนสนามรบได้",
+      },
+      {
+        id: 4,
+        name: "",
+        title: "น้องคนที่ 4",
+        img: "/novel-c4.png",
+        desc: "เหี้ยมโหด เย็นชา แต่แฝงไปด้วยความเศร้าและความทรงจำที่เจ็บปวด",
+      },
+      {
+        id: 5,
+        name: "",
+        title: "พี่สาม",
+        img: "/novel-c5.png",
+        desc: "เจ้าเล่ห์ ขี้แกล้ง และมักทดสอบหัวใจของพระเอก",
+      },
+      {
+        id: 6,
+        name: " ",
+        title: "พี่รอง",
+        img: "/novel-c6.png",
+        desc: "ยึดถือกฎของสำนักอย่างเคร่งครัด และไม่ยอมเปิดใจง่าย ๆ",
+      },
+      {
+        id: 7,
+        name: " ",
+        title: "พี่ใหญ่",
+        img: "/novel-c7.png",
+        desc: "เงียบขรึม แต่ทรงพลัง และมีบทบาทสำคัญต่อชะตากรรมของทุกคน",
+      },
+      {
+        id: 8,
+        name: "พระเอก",
+        title: "ผู้ถูกเลือกโดยชะตา",
+        img: "/novel-c8.png",
+        desc: "ชายผู้ถูกผูกพันกับบทเพลงทั้งเจ็ด และเป็นกุญแจของคำสาบานทั้งหมด",
+      },
+    ].map((c) => (
+      <div
+        key={c.id}
+        className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 hover:border-cyan-300/30 hover:shadow-[0_10px_30px_rgba(0,210,255,0.12)] transition"
+      >
+
+        {/* IMAGE */}
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b1020]">
+          <img
+            src={c.img}
+            alt={c.name}
+            className="w-full aspect-[9/16] object-cover object-center"
+          />
+        </div>
+
+        {/* INFO */}
+        <div className="flex flex-col justify-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300/60">
+            Character {String(c.id).padStart(2, "0")}
+          </p>
+
+          <h3 className="mt-2 text-2xl md:text-3xl font-black text-white">
+            {c.name}
+          </h3>
+
+          <p className="mt-2 text-sm font-bold text-pink-300 uppercase tracking-[0.15em]">
+            {c.title}
+          </p>
+
+          <p className="mt-4 text-white/70 leading-8">
+            {c.desc}
+          </p>
+        </div>
+
+      </div>
+    ))}
+
+  </div>
+</section>
 
       </div>
     </main>
