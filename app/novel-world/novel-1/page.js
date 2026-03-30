@@ -7,9 +7,9 @@ const IRIUM_WORLD_PATH = "/irium-world";
 const NOVEL_WORLD_PATH = "/novel-world";
 const IDOL_WORLD_PATH = "/idol-world";
 
-const YOUTUBE_CHANNEL_URL = "https://youtube.com/@AniMateUniverse";
-const FACEBOOK_PAGE_URL = "https://facebook.com/AnimateUniverseTH";
-const OPENING_MV_URL = "https://youtu.be/PASTE_YOUR_MV_LINK_HERE";
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/channel/UC4ot8wsooHevmjgmskP_LEA";
+const FACEBOOK_PAGE_URL = "https://www.facebook.com/AniMateCafe/";
+const OPENING_MV_URL = "https://youtu.be/aQ_SWk-1L0A";
 
 const NOVEL_TITLE = "เจ็ดบทเพลงแห่งคำสาบาน";
 
