@@ -8,9 +8,9 @@ export default function NovelWorldPage() {
   const novels = [
     {
       id: 1,
-      title: "พันธะดนตรี 7 นาง",
-      subtitle: "สำนักยุทธดนตรี กับคู่หมั้นทั้งเจ็ด",
-      img: "/novel1.jpg",
+      title: "เจ็ดบทเพลงแห่งคำสาบาน",
+      subtitle: "สำนักยุทธดนตรี กับปรมาจารย์สาวทั้งเจ็ด",
+      img: "/novel1.jpeg",
       link: "/novel-world/novel-1",
       featured: true,
     },
