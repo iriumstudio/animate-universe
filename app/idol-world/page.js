@@ -195,7 +195,8 @@ const coreMembers = [
   {
     name: "Coming Soon",
     subtitle: "NEW FEATURED IDOL UNIT",
-    img: "/lunaria.jpg",
+    img: null,
+    comingSoon: true,
     fbLink: "https://facebook.com/Lunaria",
     ytLink: "https://youtube.com",
     featured: true,
@@ -203,14 +204,15 @@ const coreMembers = [
   {
     name: "Coming Soon",
     subtitle: "NEXT GENERATION PERFORMANCE UNIT",
-    img: "/eclipse.jpg",
+    img: null,
     fbLink: "https://facebook.com/Eclipse",
     ytLink: "https://youtube.com",
   },
   {
     name: "Coming Soon",
     subtitle: "DREAM POP IDOL PROJECT",
-    img: "/celestia.jpg",
+    img: null,
+    comingSoon: true,
     fbLink: "https://facebook.com/Celestia",
     ytLink: "https://youtube.com",
   },
