@@ -100,7 +100,7 @@ export default function NovelPage() {
             className="block rounded-xl border border-white/10 overflow-hidden"
           >
             <img
-              src="/novel-opening-mv.jpg"
+              src="/novel-opening-mv.png"
               alt="คำสาบานใต้พิณ"
               className="w-full aspect-video object-cover"
             />
