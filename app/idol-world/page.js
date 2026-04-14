@@ -165,6 +165,13 @@ const coreMembers = [
     featured: true,
   },
     {
+    name: "Mika x Oni3",
+    subtitle: "เพลงพิเศษรับสงกรานต์ 2569 สาดใจไปกับเธอ Mika feat. Oni3",
+    img: "/mika_oni3.png",
+    fbLink: "https://facebook.com/media/set/?set=a.122107353303254927",
+    ytLink: "https://youtu.be/nbKm_mB5FQg",
+  },
+      {
     name: "ANIX x Hanko",
     subtitle: "เพลงพิเศษรับสงกรานต์ 2569 สาดให้สุด หยุดที่เธอ",
     img: "/anix_hanko.png",
