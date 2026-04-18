@@ -2,10 +2,20 @@
 
 const videos = [
   {
+    title: "เรื่องหมี เรื่องกล้วย ช้าไม่ได้",
+    description: "ป๋าเสริฐเคยบอกไว้ “เรื่องหมี เรื่องกล้วย” ช้าไม่ได้ โลกมันไถเร็วกว่ารถไฟฟ้าอีกนะ",
+    youtubeUrl: "https://youtu.be/yFUhjz4d0BI",
+    featured: true,
+  },
+      {
+    title: "สงกรานต์รถแห่น้ำมันแพง 2569 ",
+    description: "รวมเพลงรถแห่ลูกทุ่งสงกรานต์น้ำมันแพง 2569 💦 |  ลูกทุ่งหมอลำ x EDM ม่วนๆ เต็มอัลบั้ม  1 ชั่วโมงเต็ม",
+    youtubeUrl: "https://youtu.be/hGFFxduyxMw",
+  },
+    {
     title: "Dragon Slayer: Oath of the Last Flame | คำสาบานแห่งนักรบมังกร [Narrative Cinematic Short Film]",
     description: "เมื่อโลกถูกปกคลุมด้วยเปลวเพลิงและมังกรกลายเป็นผู้ครองฟ้า ความหวังของมนุษย์เหลือเพียงหนึ่งเดียว",
     youtubeUrl: "https://youtu.be/sZZZgft6E_Q",
-    featured: true,
   },
   {
     title: "คอยขิง",

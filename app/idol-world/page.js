@@ -157,11 +157,11 @@ const trainees = [
 
 const coreMembers = [
   {
-    name: "Blue Achive x AniMate",
-    subtitle: "[โปรเจคพิเศษ] ซ่าให้สุดหยดสุดท้าย",
-    img: "/animate_ba.png",
-    fbLink: "https://facebook.com/media/set/?set=a.122111017089254927",
-    ytLink: "https://youtu.be/IyoisukEn9o",
+    name: "Venom Queens",
+    subtitle: "เรื่องหมีเรื่องกล้วย ช้าไม่ได้",
+    img: "/venom_queen.png",
+    fbLink: "https://www.facebook.com/AniMateCafe/photos_albums",
+    ytLink: "https://youtu.be/k9nsAixKGwY",
     featured: true,
   },
     {
@@ -169,22 +169,29 @@ const coreMembers = [
     subtitle: "[โปรเจคพิเศษ] สงกรานต์สาดจนดาวร่วง",
     img: "/zister_shiroko.jpeg",
     fbLink: "https://facebook.com/media/set/?set=a.122111016009254927",
-    ytLink: "https://youtu.be/1Vw8kTVMYWc",
+    ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_43STFACUH_TpBPdZ5kopuBc",
     featured: true,
+  },
+  {
+    name: "Blue Achive x AniMate",
+    subtitle: "[โปรเจคพิเศษ] ซ่าให้สุดหยดสุดท้าย",
+    img: "/animate_ba.png",
+    fbLink: "https://facebook.com/media/set/?set=a.122111017089254927",
+    ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_43STFACUH_TpBPdZ5kopuBc",
   },
     {
     name: "Mika x Oni3",
     subtitle: "[โปรเจคพิเศษ] สาดใจไปกับเธอ Mika feat.Oni3",
     img: "/mika_oni3.png",
     fbLink: "https://facebook.com/media/set/?set=a.122107353303254927",
-    ytLink: "https://youtu.be/nbKm_mB5FQg",
+    ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_43STFACUH_TpBPdZ5kopuBc",
   },
       {
     name: " Hina x ANIX ",
     subtitle: "[โปรเจคพิเศษ] สาดใจให้สุด หยุดที่เธอ Hina feat.ANIX",
     img: "/anix_hina.png",
     fbLink: "https://facebook.com/media/set/?set=a.122110762971254927",
-    ytLink: "https://youtu.be/yXYwW5o4DIc",
+    ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_43STFACUH_TpBPdZ5kopuBc",
   },
   {
     name: "ANIX x Hanko",
@@ -205,7 +212,7 @@ const coreMembers = [
     subtitle: "LITTLE SISTER IDOL UNIT",
     img: "/zister.jpg",
     fbLink: "https://facebook.com/media/set/?set=a.122109069213254927",
-    ytLink: "https://youtu.be/uRK_kowvZpU",
+    ytLink: "https://www.youtube.com/playlist?list=PLpDZkAX_z_40l3qCm2cMBpyGX2A-tf4l6",
   },
   {
     name: "Oni3 : Crimson Kagura",
@@ -230,7 +237,7 @@ const coreMembers = [
   },
   {
     name: "Celestial",
-    subtitle: "Angel iDol Unit",
+    subtitle: "Angel iDol Unit - Coming Soon",
     img: null,
     comingSoon: true,
     fbLink: "https://www.facebook.com/AniMateCafe",
